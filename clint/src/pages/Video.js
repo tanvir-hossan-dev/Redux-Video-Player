@@ -14,7 +14,7 @@ export default function Video() {
     (state) => state.video
   );
 
-  const { title, id, link } = video;
+  const { title, id, link, tags } = video;
 
   const dispatch = useDispatch();
 
@@ -29,11 +29,11 @@ export default function Video() {
   }
 
   if (!isLoading && isError) {
-    content = content = <div className="col-span-12">{error}</div>;
+    content = <div className="col-span-12">{error}</div>;
   }
 
   if (!isLoading && !isError && !video?.id) {
-    content = content = <div className="col-span-12">Not found</div>;
+    content = <div className="col-span-12">Not found</div>;
   }
   if (!isLoading && !isError && video?.id) {
     content = (
@@ -44,7 +44,7 @@ export default function Video() {
           <VideoDescription video={video} />
         </div>
 
-        <RelatedVideoList />
+        <RelatedVideoList currentVideoId={id} tags={tags} />
       </div>
     );
   }
