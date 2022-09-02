@@ -11,9 +11,11 @@ export default function VideGrid() {
   const { isLoading, isError, videos, error } = useSelector(
     (item) => item.vidoes
   );
+  const { search, tags } = useSelector((state) => state.filters);
+
   useEffect(() => {
-    dispatch(getVideos());
-  }, [dispatch]);
+    dispatch(getVideos({ tags, search }));
+  }, [dispatch, tags, search]);
 
   let content;
 

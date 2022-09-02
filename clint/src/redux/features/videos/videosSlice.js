@@ -8,10 +8,13 @@ const initialState = {
   error: "",
 };
 
-const getVideos = createAsyncThunk("videos/getVideos", async () => {
-  const videos = await getApi();
-  return videos;
-});
+const getVideos = createAsyncThunk(
+  "videos/getVideos",
+  async ({ tags, search }) => {
+    const videos = await getApi(tags, search);
+    return videos;
+  }
+);
 
 const vidoesSlice = createSlice({
   name: "videos",
